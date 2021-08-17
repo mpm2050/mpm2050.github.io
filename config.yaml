@@ -1,0 +1,206 @@
+# https://gohugo.io/overview/configuration/
+
+baseurl: "https://parsiya.net/"
+disablePathToLower: false
+languageCode: en-us
+title: அஃக 
+theme: Hugo-Octopress
+
+# Number of blog posts displayed on each pagination page.
+# No need for pagination in the current setup.
+# paginate: 0
+
+# Frontmatter will be in yaml.
+metadataformat: yaml
+
+# Disqus configuration.
+disqusShortname: parsiya
+
+# Only generate HTML output for these places. No need for RSS/XML/whatever.
+outputs:
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+  taxonomyTerm:
+    - HTML
+
+# Permalink URL type. Don't change this because it will invalidate all old links
+# unless you like to do a ton of aliases.
+permalinks:
+  post: "/blog/:year-:month-:day-:title/"
+
+toc: true
+# Menu
+menu:
+  # Navigation menu.
+  # All links except home ("/") will open in a new window.
+  # Template: {{theme-dir}}/layouts/partials/navigation.html.
+  main:
+    - Name: About Me!
+      URL: /about/
+      weight: 2
+    - Name: எழுத்துக்கள்
+      URL: /letters/
+      weight: 5
+#    - Name: My Clone
+#      URL: "https://parsiya.io/"
+#      weight: 10
+#    - Name: Source Repo
+#      URL: "https://github.com/parsiya/parsiya.net"
+#      weight: 15
+#    - Name: Manual Work is a Bug
+#      URL: https://queue.acm.org/detail.cfm?id=3197520
+#      weight: 20
+#    - Name: The Other Guy from Wham!
+#      URL: "https://www.google.com/search?q=andrew+ridgeley"
+#      weight: 25
+
+  # Sidebar menu items.
+  sidebar:
+    - Name: Thick Client Proxying
+      URL: /categories/thick-client-proxying/
+      weight: 5
+    # - Name: CTFs/Writeups
+      # URL: /categories/writeup/
+      # weight: 6
+    # - Name: Attack Surface Analysis
+      # URL: /categories/attack-surface-analysis/
+      # weight: 7
+    # - Name: Bug Bounty
+      # URL: /categories/bug-bounty/
+      # weight: 9
+    # - Name: Go/Golang
+      # URL: /categories/go/
+      # weight: 10
+    # - Name: Blockchain
+      # URL: /categories/blockchain/
+      # weight: 15
+    # - Name: Burp Extension Development
+      # URL: /categories/burp-extension/
+      # weight: 17
+    # - Name: Automation
+      # URL: /categories/automation/
+      # weight: 20
+    # - Name: Reverse Engineering
+      # URL: /categories/reverse-engineering/
+      # weight: 25
+    # - Name: Crypto(graphy)
+      # URL: /categories/crypto/
+      # weight: 30
+    # - Name: WinAppDbg
+      # URL: /categories/winappdbg/
+      # weight: 36
+    # - Name: AWSome.pw - S3 bucket squatting - my very legit branded vulnerability
+      # URL: "https://awsome.pw"
+      # weight: 40
+
+# Parameters.
+params:
+
+  # Open all menu links in a new window.
+  navigationNewWindow: true
+
+  # Sidebar configuration.
+  # Disable recent posts section in the sidebar.
+  sidebarRecentLimit: 0
+  # The big, bold text on top of the sidebar.
+  sidebarHeader: Who am I?
+  # Appears directly under the sidebar header.
+  sidebarText: |-
+    I am Pitchaimuthu Muthaiya, a senior security engineer.
+    
+    I write about application tamil words and roots of words.
+
+    Click on [About Me!](/about/) to know more.
+
+  # Enable links in the side bar. They are under menu.sidebar.
+  sidebarMenuEnabled: true
+  # Name of the links section.
+  sidebarMenuHeader: Collections
+
+  # Sidebar links
+  # bitbucket: "https://bitbucket.org/ttakdict/" # I am not really active on bitbucket.
+  twitter: "https://twitter.com/ttakdict/"
+  keybase: "https://keybase.io/ttakdict/"
+  github: "https://github.com/ttakdict/"
+  linkedin: "https://www.linkedin.com/in/ttakdict"
+
+  # 404 page. Header and text.
+  notfoundHeader: There's nothing here.
+  notfoundText: You can never go back.
+
+  # Do not display all posts' content on the front page (and in pagination).
+  truncate: true
+
+  # Author's name. Appears in metadata and under posts.
+  author: Pitchaimuthu
+
+  # Text that appears in the website header under the website title.
+  subtitle: |-
+    தமிழின் பெரிய சொற்தொகுப்பு
+
+  # Search engine URL.
+  searchEngineURL: "https://www.google.com/search"
+
+  # "Continue Reading" text that appears under truncated posts.
+  # continueReadingText: Would you like to know more? # I don't need this, I am using the compact index.
+
+  # # Enable the RSS icon in navigation.
+  rss: true
+
+  description: ""
+  defaultKeywords:
+    - Parsia Hakimian
+    - Parsiya
+    - infosec
+    - information security
+  
+  # Enable table of contents for post by setting this to true. Otherwise, you
+  # can enable/disable them individually via frontmatter.
+  # tableOfContents: false
+
+  # Generate taxonomy list under /categories/ and /tags/
+  generateTaxonomyList: true
+
+  # Twitter card config.
+  # Enable twitter card.
+  twitterCardEnabled: true
+  # Twitter card domain.
+  twitterCardDomain: parsiya.net
+  # Your twitter username, do not include the @.
+  twitterCardAuthor: CryptoGangsta
+  # Not sure what this is used for, but my twitter card works without it.
+  # twitterCardSite = 
+
+  # Use the compact index.
+  compactIndex: true
+
+# markup for Hugo v.60+
+markup:
+  # Note to future me: The reason is because new links in Goldmark are not
+  # opened in a new tab by default. We can use the render hook to make it happen
+  # for just markdown links but not image links or linkify links (i.e., URLs in
+  # the markdown documents as-is). So before you come and waste a lot of time to
+  # switch to Goldmark, don't. Of course, unless this problem has been solved in
+  # Goldmark.
+  defaultMarkdownHandler: blackfriday # use Blackfriday
+  blackFriday:
+    fractions: false
+    hrefTargetBlank: true
+    latexDashes: false
+    nofollowLinks: true
+    smartDashes: false
+    smartypants: false
+  
+  # Change the defaults for the toc because I want to render every heading in
+  # the document.
+  tableOfContents:
+    endLevel: 7
+    startLevel: 1
+    # Note to future me: Consider changing the start level to 2 but then you
+    # have to go and change it for every blog post that started with a level 1
+    # heading.
+  highlight:
+    # use solarized-dark to highlight code.
+    style: "solarized-dark"
