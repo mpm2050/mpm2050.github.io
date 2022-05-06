@@ -1,71 +1,77 @@
-# parsiya.net ![Deploy Blog](https://github.com/parsiya/parsiya.net/workflows/Deploy%20Blog/badge.svg)
-This is the source for my personal website at https://parsiya.net.
+# Lagom
 
-It is generated using [Hugo][hugo] and the [Hugo-Octopress Theme][hugo-octopress].
-I ported the [Octopress][octopress] classic theme to Hugo.
+> #### *Lagom* is a Swedish word with no direct English equivalent, meaning "just the right amount"
 
-[hugo]: https://gohugo.io/
-[hugo-octopress]: https://github./parsiya/hugo-octopress
-[octopress]: https://github.com/octopress/octopress
+Lagom, a [Jekyll][j] blog theme with just the right amount of style. 
 
-## Workflow
+Extracted lovingly from [http://mdswanson.com][mds] for your enjoyment!
 
-1. Create a new post with `hugo new post/2018-11-23-post-name/index.markdown`
-   (or `index.md`).
-2. Edit the post and proofread. Pictures are in the same
-   directory to take advantage of [page bundles][page-bundles].
-  1. `ctrl+shift+b` in VS Code starts a task that runs the Hugo watch server and
-     opens it in a browser. See [.vscode/tasks.json](.vscode/tasks.json).
-3. Push to Github.
-4. Github action takes over and builds the site.
-    * See the "Deploying" section below for more information.
-5. [s3deploy][s3deploy] uploads the results to AWS.
-6. ???
-7. Profit. The website is now updated. Add CI/CD to your resume.
 
-[page-bundles]: https://gohugo.io/content-management/page-bundles/
-[s3deploy]: https://github.com/bep/s3deploy
 
-## Hosting
-The website is hosted in an AWS S3 bucket. CloudFront provides CDN and TLS (and
-certificate). GitHub pages are also popular (and free). See my blog post
-[Automagically Deploying Websites with Custom Domains to Github Pages][gh-pages].
+* Responsive, based on [Skeleton][skeleton]
+* [Font Awesome][font-awesome] for icons
+* Open Sans from [Google web fonts][gfonts]
+* Built-in Atom feed
 
-[gh-pages]: https://parsiya.net/blog/2021-02-17-automagically-deploying-websites-with-custom-domains-to-github-pages/
+[![Live Demo](https://img.shields.io/badge/view-live--demo-blue.svg?style=flat-square)](http://lagom.mdswanson.com/)
 
-## Deploying
-I use a custom GitHub action. See [deploy.yml](.github/workflows/deploy.yml).
+## Action Shots
+![](http://i.imgur.com/Pmzk4j1.png)
+![](http://i.imgur.com/CT2Xvug.png)
+![](http://i.imgur.com/XisjqW1.jpg)
 
-### s3deploy
-I use [s3deploy][s3deploy] to deploy the blog to AWS. The configuration is
-inside [.s3deploy.yml](.s3deploy.yml). [This example][s3deploy-config] is
-suitable (with a bit of modification) for most static websites.
+## Installation
 
-[s3deploy-config]: https://github.com/bep/s3deploy#advanced-configuration
+- [Fork this repository][fork]
+- Clone it: `git clone https://github.com/YOUR-USER/lagom`
+- Install the [GitHub Pages gem][pages] (includes Jekyll): `bundle install`
+- Run the jekyll server: `jekyll serve`
 
-Static resources (fonts, images, css, etc.) do not have expiration dates.
-Everything else uses gzip compression. When a resource is updated, s3deploy
-invalidates its CloudFront cache.
+You should have a server up and running locally at <http://localhost:4000>.
 
-**Note**: Enabling `gzip compression` for Keybase proofs (see
-[static/keybase.txt](static/keybase.txt)) breaks them.
+## Customization
 
-Use the s3deploy's [example IAM policy][s3deploy-iam]. At the time of writing,
-AWS does not support addressing separate CloudFront distributions with ARNs
-(Amazon Resource Names) so the resulting key can list and invalidate all
-distributions.
+Next you'll want to change a few things. Most of them can be changed directly in
+[theme.yml][config]. That's where you can add your social links, change the accent
+color, stuff like that.
 
-[s3deploy-iam]: https://github.com/bep/s3deploy#cloudfront-cdn-cache-invalidation
+There's a few other places that you'll want to change, too:
 
-### Travis CI - Not Used Anymore
-The blog used to use Travis CI. See [@archive/.travis.yml](@archive/.travis.yml).
+- [CNAME][cname]: If you're using this on GitHub Pages with a custom domain name, 
+  you'll want to change this to be the domain you're going to use. All that should 
+  be in here is a domain name on the first line and nothing else (like: `example.com`).
+- [favicon.png][favicon]: This is the icon in your browser's address bar. You should 
+  change it to whatever you'd like.
+- [logo.png][logo]: A square-ish image that appears in the upper-left corner
 
-* The theme is a submodule. It's updated first.
-* Install two debs. Hugo and s3deploy. I like to control the versions as both
-  software are under heavy development.
-* `language:minimal` reduces build time by 20 seconds (compared to the default
-  container).
-* AWS key and secret are in `AWS_ACCESS_KEY` and `AWS_SECRET_ACCESS_KEY`
-  environment variables respectively. These are used by s3deploy.
+## Deployment
 
-See [@archive/deploy.bat](@archive/deploy.bat) for manual deployment.
+You should deploy with [GitHub Pages][pages] - it's just easier.
+
+All you should have to do is rename your repository on GitHub to be
+`username.github.io`. Since everything is on the `gh-pages` branch, you
+should be able to see your new site at <http://username.github.io>.
+
+## Licensing
+
+[MIT](https://github.com/swanson/lagom/blob/master/LICENSE) with no
+added caveats, so feel free to use this on your site without linking back to
+me or using a disclaimer or anything silly like that.
+
+## Contact
+I'd love to hear from you at [@_swanson][twitter]. Feel free to open issues if you
+run into trouble or have suggestions. Pull Requests always welcome.
+
+[j]: http://jekyllrb.com/
+[mds]: http://mdswanson.com
+[skeleton]: http://www.getskeleton.com/
+[font-awesome]: http://fortawesome.github.io/Font-Awesome/
+[gfonts]: http://www.google.com/fonts/specimen/Open+Sans
+[fork]: https://github.com/swanson/lagom/fork
+[config]: https://github.com/swanson/lagom/blob/master/_data/theme.yml
+[cname]: https://github.com/swanson/lagom/blob/master/CNAME
+[favicon]: https://github.com/swanson/lagom/blob/master/favicon.png
+[logo]: https://github.com/swanson/lagom/blob/master/logo.png
+[pages]: http://pages.github.com
+[twitter]: https://twitter.com/_swanson
+[pages]: https://github.com/github/pages-gem

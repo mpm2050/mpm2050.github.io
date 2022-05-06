@@ -1,1 +1,0 @@
-Mostly deployment scripts and configurations that are not used anymore.
